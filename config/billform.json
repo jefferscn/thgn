@@ -1,0 +1,67 @@
+{
+    "default": {
+        "formTemplate": "tabs",
+        "mergeGridLayout": true,
+        "mergeGridLayoutTitle": "默认",
+        "controlMapping": {}
+    },
+    "TSL_ToDoList": {
+        "formTemplate": "list"
+    },
+    "OA_TransferTask": {
+        "formTemplate": "modal",
+        "title": "转发",
+        "ignoredControl": [],
+        "actions": [
+            "TransferTask",
+            "cancel"
+        ]
+    },
+    "B_ERPAccAuzChgApp": {
+        "formTemplate": "tabs",
+        "mergeGridLayout": true,
+        "mergeGridLayoutTitle": "基础",
+        "controls": {
+            "Grid2": {
+                "primaryKey": "Right1",
+                "secondKey": [
+                    "id",
+                    "Module"
+                ],
+                "itemNumberOfLines": 3
+            },
+            "AttachmentGrid": {},
+            "ListView1": {
+                "primaryKey": "workItemName",
+                "secondKey": [
+                    "Audit_Result",
+                    "operatorID"
+                ],
+                "itemNumberOfLines": 3,
+                "isCustomLayout": true,
+                "rightElement": {
+                    "type": "element",
+                    "elementType": "DateText",
+                    "elementProps":[
+                        {
+                            "yigoid": "finishTime"
+                        }
+                    ]
+                }
+            },
+            "GridLayoutPanel5": {
+                "controlMapping": {}
+            },
+            "GridLayoutPanel144": {
+                "controlMapping": {}
+            }
+        },
+        "ignoredControl": [
+            "Grid1",
+            "Button2",
+            "Button6",
+            "Button7"
+        ],
+        "controlMapping": {}
+    }
+}
