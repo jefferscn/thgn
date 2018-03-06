@@ -17,6 +17,32 @@
             "cancel"
         ]
     },
+    "B_LeaveApplication": {
+        "formTemplate": "tabs",
+        "mergeGridLayout": true,
+        "mergeGridLayoutTitle": "基础",
+        "controls": {
+            "ListView1": {
+                "primaryKey": "workItemName",
+                "secondKey": [
+                    "Audit_Result",
+                    "operatorID"
+                ],
+                "itemNumberOfLines": 3,
+                "isCustomLayout": true,
+                "rightElement": {
+                    "type": "element",
+                    "elementType": "DateText",
+                    "elementProps": {
+                        "yigoid": "finishTime"
+                    }
+                }
+            }
+        },
+        "ignoredControl": [
+            "AttachmentGrid"
+        ]
+    },
     "B_ERPAccAuzChgApp": {
         "formTemplate": "tabs",
         "mergeGridLayout": true,
@@ -42,11 +68,9 @@
                 "rightElement": {
                     "type": "element",
                     "elementType": "DateText",
-                    "elementProps":[
-                        {
-                            "yigoid": "finishTime"
-                        }
-                    ]
+                    "elementProps": {
+                        "yigoid": "finishTime"
+                    }
                 }
             },
             "GridLayoutPanel5": {

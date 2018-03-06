@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Components} from 'yes-native'; // eslint-disable-line
-import defaultTemplateMapping from './template/defaultTemplateMapping';
-import billform from './billform';
+import { Components } from 'yes-native'; // eslint-disable-line
+import TemplateView from './TemplateView';
 const { BillForm, WorkflowOperationBar, FormInfo } = Components;
 
 export default class DynamicView extends Component {
@@ -30,26 +29,11 @@ export default class DynamicView extends Component {
     };
 
     render() {
-        const formKey = this.props.navigation.state.params.metaKey;
-        let extraProps;
-        // 支持反向模版
-        extraProps = billform.default;
-        let [fKey, tKey] = formKey.split('|');
-        if (billform[fKey]) {
-            extraProps = Object.assign(extraProps, billform[fKey]);
-        }
-        if (billform[formKey]) {
-            extraProps = Object.assign(extraProps, billform[formKey]);
-        }
-        const TemplateComponent = defaultTemplateMapping.get(extraProps.formTemplate);
-
         return (
-            <TemplateComponent
-                formKey={formKey}
+            <TemplateView
+                formKey={this.props.navigation.state.params.metaKey}
+                oid={this.props.navigation.state.params ? this.props.navigation.state.params.id : -1}
                 status={this.props.navigation.state.params.status || 'VIEW'}
-                oid={this.props.navigation.state.params ? this.props.navigation.state.params.id : -1} // eslint-disable-line
-                {...this.props}
-                {...extraProps}
             />
         );
     }

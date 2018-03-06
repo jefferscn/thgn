@@ -11,7 +11,7 @@ class DateText extends PureComponent {
         const t = new Date(v);
         const year = t.getYear();
         const currentYear = (new Date()).getYear();
-        let formatOfDate = 'yyyy-mm-dd';
+        let formatOfDate = 'yy-mm-dd';
         if (year === currentYear) {
             formatOfDate = 'mm-dd';
         }

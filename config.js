@@ -9,6 +9,7 @@ import {
     withNavigation,
 } from 'react-navigation';
 import DynamicView from './DynamicView';
+import WorkitemView from './WorkitemView';
 import { generateTabRouteConfig } from './util';
 import './template';
 import projectJSON from './config/project.json';
@@ -26,6 +27,7 @@ try {
 } catch (e) {
     console.info(e.message);    // eslint-disable-line no-console
 }
+console.log(control);
 const appOptions = {
     sessionKey,
     serverPath,
@@ -67,6 +69,10 @@ function generateStackNavigator(customStackConfig, customRouteConfigMap) {
         DynamicDetail1: {
             screen: withNavigation(DynamicView),
             path: 'YES/:metaKey/:id/:status',
+        },
+        Workitem: {
+            screen: withNavigation(WorkitemView),
+            path: 'WORKITEM/:wid',
         },
         DynamicMulti: {
             screen: withNavigation(DynamicView),
