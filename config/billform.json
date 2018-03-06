@@ -25,9 +25,10 @@
             "ListView1": {
                 "primaryKey": "workItemName",
                 "secondKey": [
-                    "Audit_Result",
-                    "operatorID"
+                    "operatorID",
+                    "Audit_Result"
                 ],
+                "tertiaryKey":["userInfo"],
                 "itemNumberOfLines": 3,
                 "isCustomLayout": true,
                 "rightElement": {
