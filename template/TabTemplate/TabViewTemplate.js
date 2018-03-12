@@ -49,6 +49,9 @@ class TabViewTemplate extends TabView {
         return <DynamicControl yigoid={route.key} {...props} />;
     }
     calculateElement(props) {
+        if (props.control && typeof props.control === 'string') {
+            props['control'] = controls[props.control];
+        }
         for (const key in props) {
             const ele = props[key];
             if (ele.type === 'element') {

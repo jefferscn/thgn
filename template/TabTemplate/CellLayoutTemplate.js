@@ -5,6 +5,13 @@ import { DynamicControl } from 'yes'; // eslint-disable-line import/no-unresolve
 
 const { ScrollView, Layout } = Components;
 const { CellLayout } = Layout;
+const styles = {
+    textStyle: {
+        color: 'gray',
+    },
+};
+console.log('layout');
+console.log(Layout);
 class CellLayoutTemplate extends Component {  // eslint-disable-line
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.shape({
@@ -22,8 +29,8 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                             <DynamicControl
                                 yigoid={item.key}
                                 isCustomLayout={true}
-                                layoutStyles={{minHeight:44}}
-                                layout={<CellLayout divider title={item.caption} />}
+                                layoutStyles={{ minHeight: 44 }}
+                                layout={<CellLayout divider titleStyle={styles.textStyle} title={item.caption} />}
                             />
                         )
                     )
@@ -31,7 +38,6 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
             </ScrollView>
         );
     }
-
 }
 
 export default CellLayoutTemplate;

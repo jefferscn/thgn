@@ -3,6 +3,9 @@
         "formTemplate": "tabs",
         "mergeGridLayout": true,
         "mergeGridLayoutTitle": "默认",
+        "ignoredTags": [
+            "button"
+        ],
         "controlMapping": {}
     },
     "TSL_ToDoList": {
@@ -17,27 +20,84 @@
             "cancel"
         ]
     },
+    "B_PayApplication": {
+        "formTemplate": "tabs",
+        "mergeGridLayout": true,
+        "mergeGridLayoutTitle": "基础",
+        "controls": {
+            "ListView1": {
+                "control": "CellLayoutList",
+                "containerStyle": {
+                    "paddingBottom": 10
+                },
+                "items": [
+                    {
+                        "key": "workItemName",
+                        "caption": "工作项名称"
+                    },
+                    {
+                        "key": "creatTime",
+                        "caption": "创建日期"
+                    },
+                    {
+                        "key": "finishTime",
+                        "caption": "完成日期"
+                    },
+                    {
+                        "key": "operatorID",
+                        "caption": "处理人"
+                    },
+                    {
+                        "key": "Audit_Result",
+                        "caption": "审批结果"
+                    },
+                    {
+                        "key": "userInfo",
+                        "caption": "审批意见"
+                    }
+                ]
+            }
+        },
+        "ignoredControl": [
+            "AttachmentGrid"
+        ]
+    },
     "B_LeaveApplication": {
         "formTemplate": "tabs",
         "mergeGridLayout": true,
         "mergeGridLayoutTitle": "基础",
         "controls": {
             "ListView1": {
-                "primaryKey": "workItemName",
-                "secondKey": [
-                    "operatorID",
-                    "Audit_Result"
-                ],
-                "tertiaryKey":["userInfo"],
-                "itemNumberOfLines": 3,
-                "isCustomLayout": true,
-                "rightElement": {
-                    "type": "element",
-                    "elementType": "DateText",
-                    "elementProps": {
-                        "yigoid": "finishTime"
+                "control": "CellLayoutList",
+                "containerStyle": {
+                    "paddingBottom": 10
+                },
+                "items": [
+                    {
+                        "key": "workItemName",
+                        "caption": "工作项名称"
+                    },
+                    {
+                        "key": "creatTime",
+                        "caption": "创建日期"
+                    },
+                    {
+                        "key": "finishTime",
+                        "caption": "完成日期"
+                    },
+                    {
+                        "key": "operatorID",
+                        "caption": "处理人"
+                    },
+                    {
+                        "key": "Audit_Result",
+                        "caption": "审批结果"
+                    },
+                    {
+                        "key": "userInfo",
+                        "caption": "审批意见"
                     }
-                }
+                ]
             }
         },
         "ignoredControl": [
@@ -59,20 +119,36 @@
             },
             "AttachmentGrid": {},
             "ListView1": {
-                "primaryKey": "workItemName",
-                "secondKey": [
-                    "Audit_Result",
-                    "operatorID"
-                ],
-                "itemNumberOfLines": 3,
-                "isCustomLayout": true,
-                "rightElement": {
-                    "type": "element",
-                    "elementType": "DateText",
-                    "elementProps": {
-                        "yigoid": "finishTime"
+                "control": "CellLayoutList",
+                "containerStyle": {
+                    "paddingBottom": 10
+                },
+                "items": [
+                    {
+                        "key": "workItemName",
+                        "caption": "工作项名称"
+                    },
+                    {
+                        "key": "creatTime",
+                        "caption": "创建日期"
+                    },
+                    {
+                        "key": "finishTime",
+                        "caption": "完成日期"
+                    },
+                    {
+                        "key": "operatorID",
+                        "caption": "处理人"
+                    },
+                    {
+                        "key": "Audit_Result",
+                        "caption": "审批结果"
+                    },
+                    {
+                        "key": "userInfo",
+                        "caption": "审批意见"
                     }
-                }
+                ]
             },
             "GridLayoutPanel5": {
                 "controlMapping": {}

@@ -1,5 +1,6 @@
 {
     "Login1":"yes-native/Login",
     "Login2":"yes-native/Login",
-    "DateText":"../template/ListTemplate/DateText/default"
+    "DateText":"../template/ListTemplate/DateText/default",
+    "CellLayoutList":"yes-native/CellLayoutList"
 }

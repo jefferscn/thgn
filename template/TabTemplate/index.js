@@ -6,7 +6,7 @@ import defaultTemplateMapping from '../defaultTemplateMapping';
 const { DynamicBillForm, LoadingComp } = Components;
 const ToastComponent = LoadingComp;
 class TabTemplate extends DynamicBillForm {
-    renderContent(itemList){
+    renderContent(itemList) {
         const tabList = [];
 
         Object.keys(itemList).forEach((key) => {
@@ -22,7 +22,7 @@ class TabTemplate extends DynamicBillForm {
         );
     }
     buildChildren() {
-        const { ignoredControl,mergeGridLayout,mergeGridLayoutTitle } = this.props;
+        const { ignoredControl, mergeGridLayout, mergeGridLayoutTitle, ignoredTags } = this.props;
         const form = this.getBillForm();
         if (form) {
             const rootPanel = form.form.getRoot();
@@ -37,12 +37,15 @@ class TabTemplate extends DynamicBillForm {
                 // eslint-disable-next-line no-shadow, no-inner-declarations
                 function removeIgnoredControl(yigoElement, tabKey, result) {
                     /* eslint-disable no-param-reassign */
-                    if(yigoElement.tagName==='toolbar'){
+                    if (yigoElement.tagName === 'toolbar') {
                         return;
                     }
                     const key = yigoElement.metaObj.key;
                     // ignore
                     if (ignoredControl && ignoredControl.indexOf(key) > -1) {
+                        return;
+                    }
+                    if (ignoredTags && ignoredTags.indexOf(yigoElement.tagName) > -1) {
                         return;
                     }
                     if (yigoElement.isPanel) {

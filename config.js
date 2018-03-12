@@ -145,7 +145,7 @@ AppDispatcher.register((action) => {
     switch (action.type) {
         case 'WORKFLOWCHANGE':
             setTimeout(() => {
-                BillformStore.reloadFormData('OA_ToDoList.-1');
+                BillformStore.reloadFormData('TSL_ToDoList.-1');
             }, 0);
             break;
         default:
