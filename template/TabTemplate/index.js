@@ -22,7 +22,7 @@ class TabTemplate extends DynamicBillForm {
         );
     }
     buildChildren() {
-        const { ignoredControl, mergeGridLayout, mergeGridLayoutTitle, ignoredTags } = this.props;
+        const { ignoredControl, labels = {}, mergeGridLayout, mergeGridLayoutTitle, ignoredTags } = this.props;
         const form = this.getBillForm();
         if (form) {
             const rootPanel = form.form.getRoot();
@@ -83,10 +83,16 @@ class TabTemplate extends DynamicBillForm {
                             if (!result[tabKey].items) {
                                 result[tabKey].items = [];
                             }
+                            if (yigoElement.tagName === 'radiobutton') {
+                                // yigoElement.
+                                if (!yigoElement.getMetaObj().isGroupHead) {
+                                    return;
+                                }
+                            }
                             result[tabKey].items.push({
                                 key: yigoElement.metaObj.key,
                                 tagName: yigoElement.tagName,
-                                caption: yigoElement.metaObj.caption,
+                                caption: labels[yigoElement.metaObj.key] || yigoElement.metaObj.caption,
                             });
                         }
                     }

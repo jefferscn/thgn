@@ -10,6 +10,7 @@ import {
 } from 'react-navigation';
 import DynamicView from './DynamicView';
 import WorkitemView from './WorkitemView';
+import FieldView from './FieldView';
 import { generateTabRouteConfig } from './util';
 import './template';
 import projectJSON from './config/project.json';
@@ -73,6 +74,10 @@ function generateStackNavigator(customStackConfig, customRouteConfigMap) {
         Workitem: {
             screen: withNavigation(WorkitemView),
             path: 'WORKITEM/:wid',
+        },
+        WorkitemField: {
+            screen: withNavigation(FieldView),
+            path: 'WORKITEM/:wid/:field',
         },
         DynamicMulti: {
             screen: withNavigation(DynamicView),

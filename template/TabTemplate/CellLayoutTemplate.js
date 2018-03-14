@@ -10,8 +10,6 @@ const styles = {
         color: 'gray',
     },
 };
-console.log('layout');
-console.log(Layout);
 class CellLayoutTemplate extends Component {  // eslint-disable-line
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.shape({
@@ -28,7 +26,7 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                         (
                             <DynamicControl
                                 yigoid={item.key}
-                                isCustomLayout={true}
+                                isCustomLayout
                                 layoutStyles={{ minHeight: 44 }}
                                 layout={<CellLayout divider titleStyle={styles.textStyle} title={item.caption} />}
                             />

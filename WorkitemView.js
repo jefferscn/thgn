@@ -9,9 +9,10 @@ const { BillForm, WorkflowOperationBar, FormInfo, LoadingComp } = Components;
 const WorkitemBill = workitemWrap(BillForm, LoadingComp);
 export default class WorkitemView extends PureComponent {
     static navigationOptions = ({ navigation }) => {
-        const formKey = navigation.state.params.metaKey;
         return {
-            headerTitle: <FormInfo.FormCaption style={{ fontSize: 20 }} formKey={formKey} />,
+            headerTitle: <WorkitemBill workitemId={navigation.state.params.wid}>
+                <FormInfo.FormCaption style={{ fontSize: 20 }} />
+            </WorkitemBill>,
             headerRight: (
                 <WorkitemBill
                     workitemId={navigation.state.params.wid}
@@ -57,6 +58,7 @@ export default class WorkitemView extends PureComponent {
         return (<TemplateView
             formKey={formKey}
             oid={oid}
+            field={this.props.navigation.state.params.field}
             status={'VIEW'}
             expVals={expVals}
         />);
