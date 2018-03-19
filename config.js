@@ -16,7 +16,7 @@ import './template';
 import projectJSON from './config/project.json';
 import loginJSON from './config/login.json';
 import initialPageJSON from './config/initialPage.json';
-import control from './config/control.json';
+import control from './config/control.js';
 const { sessionKey, serverPath, appName } = projectJSON;
 const { template, tooltip, companyName, bgImagePath, logoImagePath } = loginJSON;
 const { LoadingComp } = Components;
@@ -28,7 +28,6 @@ try {
 } catch (e) {
     console.info(e.message);    // eslint-disable-line no-console
 }
-console.log(control);
 const appOptions = {
     sessionKey,
     serverPath,
@@ -38,8 +37,8 @@ const appOptions = {
         template: control[template],
         tooltip,
         companyName,
-        bgImage: require(`${bgImagePath}`),
-        logoImage: require(`${logoImagePath}`),
+        // bgImage: require(`${bgImagePath}`),
+        // logoImage: require(`${logoImagePath}`),
     },
 
 };

@@ -14,7 +14,7 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.shape({
             tagName: PropTypes.string,
-            key: PropTypes.number,
+            key: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
             caption: PropTypes.string,
         })),
     };
@@ -25,6 +25,7 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                     this.props.items.map((item) =>
                         (
                             <DynamicControl
+                                key={item.key}
                                 yigoid={item.key}
                                 isCustomLayout
                                 layoutStyles={{ minHeight: 44 }}
