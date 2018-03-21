@@ -2,7 +2,7 @@ import React from 'react';
 import { DynamicControl, getMappedComponentHOC } from 'yes'; // eslint-disable-line import/no-unresolved
 import { Components } from 'yes-native'; // eslint-disable-line import/no-unresolved
 import CellLayoutTemplate from './CellLayoutTemplate';
-import controls from '../../config/control.json';
+import controls from '../../config/control.js';
 
 const CellLayout = getMappedComponentHOC(CellLayoutTemplate);
 const { TabView, TextGrid } = Components;
@@ -54,7 +54,7 @@ class TabViewTemplate extends TabView {
         }
         for (const key in props) {
             const ele = props[key];
-            if (ele.type === 'element') {
+            if (ele && ele.type === 'element') {
                 const Control = controls[ele.elementType];
                 props[key] = <Control {...ele.elementProps} />;
             }
