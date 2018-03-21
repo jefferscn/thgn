@@ -36,38 +36,34 @@
             "Trade_Type":"贸易类型",
             "TaxType":"税金承担方"
         },
+        "cellList":[],
         "controls": {
             "ListView1": {
-                "control": "CellLayoutList",
-                "containerStyle": {
-                    "paddingBottom": 10
+                "control": "Timeline",
+                "timeColumn":"finishTime",
+                "titleColumn":"workItemName",
+                "timeContainerStyle":{
+                    "backgroundColor":"gold",
+                    "borderRadius":16
                 },
-                "items": [
-                    {
-                        "key": "workItemName",
-                        "caption": "工作项名称"
-                    },
-                    {
-                        "key": "creatTime",
-                        "caption": "创建日期"
-                    },
-                    {
-                        "key": "finishTime",
-                        "caption": "完成日期"
-                    },
-                    {
-                        "key": "operatorID",
-                        "caption": "处理人"
-                    },
-                    {
-                        "key": "Audit_Result",
-                        "caption": "审批结果"
-                    },
-                    {
-                        "key": "userInfo",
-                        "caption": "审批意见"
+                "circleSize":26,
+                "innerCircle":{
+                    "type":"element",
+                    "elementType":"AuditIcon",
+                    "elementProps":{
+                        "yigoid":"Audit_Result",
+                        "size":26
                     }
-                ]
+                },
+                "separator":true,
+                "descColumn":"userInfo",
+                "imageColumn":{
+                    "type":"element",
+                    "elementType":"Avatar",
+                    "elementProps":{
+                        "yigoid":"operatorID"
+                    }
+                }
             }
         },
         "ignoredControl": [
@@ -80,36 +76,11 @@
         "mergeGridLayoutTitle": "基础",
         "controls": {
             "ListView1": {
-                "control": "CellLayoutList",
-                "containerStyle": {
-                    "paddingBottom": 10
-                },
-                "items": [
-                    {
-                        "key": "workItemName",
-                        "caption": "工作项名称"
-                    },
-                    {
-                        "key": "creatTime",
-                        "caption": "创建日期"
-                    },
-                    {
-                        "key": "finishTime",
-                        "caption": "完成日期"
-                    },
-                    {
-                        "key": "operatorID",
-                        "caption": "处理人"
-                    },
-                    {
-                        "key": "Audit_Result",
-                        "caption": "审批结果"
-                    },
-                    {
-                        "key": "userInfo",
-                        "caption": "审批意见"
-                    }
-                ]
+                "control": "Timeline",
+                "timeColumn":"finishTime",
+                "titleColumn":"workItemName",
+                "descColumn":"userInfo",
+                "separator":true
             }
         },
         "ignoredControl": [
