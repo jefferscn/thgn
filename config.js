@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Picker } from 'react-native';
-import { actions, AppDispatcher, BillformStore } from 'yes';
-import {Components} from 'yes-native';   // eslint-disable-line
+import { AppDispatcher, BillformStore } from 'yes';
 import {
     StackNavigator as stackNavigator,
     TabNavigator as tabNavigator,
@@ -17,9 +14,12 @@ import projectJSON from './config/project.json';
 import loginJSON from './config/login.json';
 import initialPageJSON from './config/initialPage.json';
 import control from './config/control.js';
+import { ControlMappings, Switch, Components } from 'yes-native';
 const { sessionKey, serverPath, appName } = projectJSON;
 const { template, tooltip, companyName, bgImagePath, logoImagePath } = loginJSON;
 const { LoadingComp } = Components;
+
+ControlMappings.defaultControlMapping.reg('checkbox', Switch);
 let rootEl = null;
 try {
     if (document) {

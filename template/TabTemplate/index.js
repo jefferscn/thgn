@@ -6,24 +6,26 @@ import defaultTemplateMapping from '../defaultTemplateMapping';
 const { DynamicBillForm, LoadingComp } = Components;
 const ToastComponent = LoadingComp;
 class TabTemplate extends DynamicBillForm {
-    renderContent(itemList) {
-        const tabList = [];
-
-        Object.keys(itemList).forEach((key) => {
-            const item = itemList[key];
-            tabList.push(item);
-        });
-
+    renderContent(tabs) {
         return (
             <TabViewTemplate
-                itemList={tabList}
+                itemList={tabs}
                 {...this.props}
             />
         );
     }
+
+    formatTabs(tabs) {
+        return tabs;
+    }
+
     buildChildren() {
-        const { ignoredControl, labels = {}, mergeGridLayout, mergeGridLayoutTitle, ignoredTags } = this.props;
+        const { ignoredControl, labels = {}, mergeGridLayout, mergeGridLayoutTitle, ignoredTags, tabs } = this.props;
         const form = this.getBillForm();
+        if (tabs) {
+            const newTabs = this.formatTabs(tabs);
+            return this.renderContent(newTabs);
+        }
         if (form) {
             const rootPanel = form.form.getRoot();
             if (rootPanel && rootPanel) {
@@ -102,7 +104,13 @@ class TabTemplate extends DynamicBillForm {
 
                 const itemList = yigoElementExceptIgnored;
 
-                return this.renderContent(itemList);
+                const tabList = [];
+                Object.keys(itemList).forEach((key) => {
+                    const item = itemList[key];
+                    tabList.push(item);
+                });
+
+                return this.renderContent(tabList);
             }
         }
         return <LoadingComp icon="loading" show>加载中...</LoadingComp>; // eslint-disable-line react/jsx-no-undef, max-len

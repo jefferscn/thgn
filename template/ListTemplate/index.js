@@ -22,7 +22,12 @@ class ListTemplate extends PureComponent {
                         rowHeight={80}
                         isCustomLayout
                         primaryKey="Topic"
-                        secondKey={['displayname', 'InstanceState']}
+                        secondKey={['displayname', {
+                            yigoid: 'InstanceState',
+                            layoutStyles: {
+                                justifyContent: 'flex-end',
+                            },
+                        }]}
                         tertiaryKey={['WorkitemName']}
                         leftElement={<LeftIcon yigoid="ProcessKey" />}
                         rightElement={<DateText yigoid="creattime" />}
