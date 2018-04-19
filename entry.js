@@ -8,5 +8,6 @@
 // import App from './cmcc'
 import App from './src';
 import { start } from 'yes-platform';
+import 'antd-mobile/dist/antd-mobile.css';
 
 export default () => start(App);

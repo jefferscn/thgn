@@ -1,0 +1,16 @@
+{
+    "type":"tab",
+    "tab":[{
+        "type":"PC",
+        "formKey": "TSL_ToDoList",
+        "title": "待办",
+        "key": "TodoList",
+        "headerRight": true
+    },{
+        "type":"mobilePhone",
+        "formKey": "MOA_Employee",
+        "title": "我的",
+        "key": "My",
+        "headerRight": true
+    }]
+}
