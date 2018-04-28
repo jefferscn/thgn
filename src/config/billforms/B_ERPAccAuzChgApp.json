@@ -1,0 +1,61 @@
+{
+    "formTemplate": "tabs",
+    "mergeGridLayout": true,
+    "mergeGridLayoutTitle": "基础",
+    "controls": {
+        "Grid2": {
+            "primaryKey": "Right1",
+            "secondKey": [
+                "id",
+                "Module"
+            ],
+            "itemNumberOfLines": 3
+        },
+        "AttachmentGrid": {},
+        "ListView1": {
+            "control": "CellLayoutList",
+            "containerStyle": {
+                "paddingBottom": 10
+            },
+            "items": [
+                {
+                    "key": "workItemName",
+                    "caption": "工作项名称"
+                },
+                {
+                    "key": "creatTime",
+                    "caption": "创建日期"
+                },
+                {
+                    "key": "finishTime",
+                    "caption": "完成日期"
+                },
+                {
+                    "key": "operatorID",
+                    "caption": "处理人"
+                },
+                {
+                    "key": "Audit_Result",
+                    "caption": "审批结果"
+                },
+                {
+                    "key": "userInfo",
+                    "caption": "审批意见"
+                }
+            ]
+        },
+        "GridLayoutPanel5": {
+            "controlMapping": {}
+        },
+        "GridLayoutPanel144": {
+            "controlMapping": {}
+        }
+    },
+    "ignoredControl": [
+        "Grid1",
+        "Button2",
+        "Button6",
+        "Button7"
+    ],
+    "controlMapping": {}
+}

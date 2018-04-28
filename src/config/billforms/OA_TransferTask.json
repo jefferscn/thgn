@@ -1,0 +1,12 @@
+{
+    "formTemplate": "modal",
+    "title": "转发",
+    "items": [
+        "Query_Employee"
+    ],
+    "ignoredControl": [],
+    "actions": [
+        "TransferTask",
+        "cancel"
+    ]
+}

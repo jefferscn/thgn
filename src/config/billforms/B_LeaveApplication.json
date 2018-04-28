@@ -1,0 +1,107 @@
+{
+    "formTemplate": "tabs",
+    "mergeGridLayout": true,
+    "mergeGridLayoutTitle": "基础",
+    "tabs": [
+        {
+            "caption": "基本",
+            "isGroup": false,
+            "items": [
+                "AuditOpinion",
+                "NO",
+                "Creator",
+                "CreatorDeptName",
+                "ApplicantName",
+                "ApplicantDeptName",
+                "Position_Descr",
+                "EmployeeType",
+                "StartingDate",
+                "ItemSort",
+                "YearHolidaysSurplus",
+                "SickLeaveSurplus",
+                "AdjustToRest",
+                "Reason",
+                {
+                    "caption": "请假时间段",
+                    "isGroup": true,
+                    "items": [
+                        "LeaveDateFrom",
+                        "LeaveDateTo",
+                        "LeaveSumDay"
+                    ]
+                }
+            ]
+        },
+        {
+            "caption": "附件",
+            "isGroup": false,
+            "items": [
+                "AttachmentGrid"
+            ]
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
+        }
+    ],
+    "controls": {
+        "AuditOpinion": {
+            "control": "TextArea",
+            "placeholder": "请输入审批意见",
+            "autoHeight": true
+        },
+        "AttachmentGrid": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path"
+                }
+            },
+            "empty": "没有附件",
+            "itemNumberOfLines": 2,
+            "actions": [
+                "Preview"
+            ],
+            "secondKey": [
+                "UploadOperator",
+                "UploadTime"
+            ]
+        },
+        "ListView1": {
+            "control": "Timeline",
+            "timeColumn": "finishTime",
+            "titleColumn": "workItemName",
+            "timeContainerStyle": {
+                "backgroundColor": "gold",
+                "borderRadius": 16
+            },
+            "circleSize": 26,
+            "innerCircle": {
+                "type": "element",
+                "elementType": "AuditIcon",
+                "elementProps": {
+                    "yigoid": "Audit_Result",
+                    "size": 26
+                }
+            },
+            "separator": true,
+            "descColumn": "userInfo",
+            "imageColumn": {
+                "type": "element",
+                "elementType": "Avatar",
+                "elementProps": {
+                    "yigoid": "operatorID"
+                }
+            }
+        }
+    },
+    "ignoredControl": []
+}

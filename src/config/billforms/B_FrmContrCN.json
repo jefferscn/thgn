@@ -1,0 +1,158 @@
+{
+    "formTemplate": "tabs",
+    "mergeGridLayout": true,
+    "mergeGridLayoutTitle": "基础",
+    "tabs": [
+        {
+            "caption": "基本信息",
+            "isGroup": false,
+            "items": [
+                "NO",
+                "BillerName2",
+                "ApplicantDept",
+                "CustomerName",
+                "OU_NAME",
+                {
+                    "caption": "Contract",
+                    "key": "ContractKb"
+                },
+                "Currency",
+                "ArrivalRegion",
+                {
+                    "caption": "Main Products",
+                    "isGroup": true,
+                    "items": [
+                        "Grid1"
+                    ]
+                }
+            ]
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
+        },
+        {
+            "caption": "附件",
+            "items": [
+                {
+                    "caption": "ContractUpload",
+                    "isGroup": true,
+                    "items": [
+                        "AttachmentGrid"
+                    ]
+                },
+                {
+                    "caption": "Reference documents detail",
+                    "isGroup": true,
+                    "items": [
+                        "Grid5"
+                    ]
+                }
+            ]
+        }
+    ],
+    "controls": {
+        "Grid1": {
+            "control": "TextGrid",
+            "itemNumberOfLines": 2,
+            "primaryKey": "Model",
+            "secondKey": [
+                "ProductCategory",
+                "ModelDesc"
+            ],
+            "rightElement": {
+                "type": "element",
+                "elementType": "ListRightElement",
+                "elementProps": {
+                    "firstline": "SumQuantityMW",
+                    "firstlineprops": {
+                        "format": "<%= displayValue %>(MW)"
+                    },
+                    "secondline": "Amount",
+                    "secondlineprops": {
+                        "format": "¥<%= displayValue %>(M)"
+                    }
+                }
+            }
+        },
+        "Grid5": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path2"
+                }
+            },
+            "actions": [
+                "PreView2"
+            ],
+            "itemNumberOfLines": 2,
+            "clickYigoId": "Preview2",
+            "secondKey": [
+                "UploadOperator2",
+                "UploadTime2"
+            ]
+        },
+        "AttachmentGrid": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path"
+                }
+            },
+            "itemNumberOfLines": 2,
+            "actions": [
+                "Preview"
+            ],
+            "secondKey": [
+                "UploadOperator",
+                "UploadTime"
+            ]
+        },
+        "ListView1": {
+            "control": "Timeline",
+            "timeColumn": "finishTime",
+            "titleColumn": "workItemName",
+            "timeContainerStyle": {
+                "backgroundColor": "gold",
+                "borderRadius": 16
+            },
+            "circleSize": 26,
+            "innerCircle": {
+                "type": "element",
+                "elementType": "AuditIcon",
+                "elementProps": {
+                    "yigoid": "Audit_Result",
+                    "size": 26
+                }
+            },
+            "separator": true,
+            "descColumn": "userInfo",
+            "imageColumn": {
+                "type": "element",
+                "elementType": "Avatar",
+                "elementProps": {
+                    "yigoid": "operatorID"
+                }
+            }
+        }
+    },
+    "ignoredControl": [
+        "Grid1",
+        "Grid2",
+        "Grid3"
+    ]
+}

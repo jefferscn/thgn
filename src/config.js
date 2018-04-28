@@ -8,16 +8,17 @@ import {
 import DynamicView from './DynamicView';
 import WorkitemView from './WorkitemView';
 import FieldView from './FieldView';
-import { generateTabRouteConfig } from './util';
+// import { generateTabRouteConfig } from './util';
 import './template';
 import projectJSON from './config/project.json';
 import loginJSON from './config/login.json';
 import initialPageJSON from './config/initialPage.json';
 import control from './config/control.js';
-import { ControlMappings, Switch, Components } from 'yes-platform';
+import { ControlMappings, Switch } from 'yes-platform';
+import { generateTabRouter } from 'yes-router';
+import generateRouteComponent from './util/generateRouteComponent';
 const { sessionKey, serverPath, appName } = projectJSON;
 const { template, tooltip, companyName, bgImagePath, logoImagePath } = loginJSON;
-const { LoadingComp } = Components;
 
 ControlMappings.defaultControlMapping.reg('checkbox', Switch);
 let rootEl = null;
@@ -42,118 +43,149 @@ const appOptions = {
     },
 
 };
-// Tabs
-let MainTabNavigator;
+
+const routes = {
+    DynamicDetail: {
+        screen: withNavigation(DynamicView),
+        path: 'YESMOBILE/:metaKey/:id/:status',
+    },
+    DynamicDetail1: {
+        screen: withNavigation(DynamicView),
+        path: 'YES/:metaKey/:id/:status',
+    },
+    Workitem: {
+        screen: withNavigation(WorkitemView),
+        path: 'WORKITEM/:wid',
+    },
+    WorkitemField: {
+        screen: withNavigation(FieldView),
+        path: 'WORKITEM/:wid/:field',
+    },
+    DynamicMulti: {
+        screen: withNavigation(DynamicView),
+        path: 'YESMOBILE/:metaKey/:status',
+    },
+};
+
+let MainRouter = null;
 switch (initialPageJSON.type) {
-    case 'tab':
-        const routeConfig = generateTabRouteConfig(initialPageJSON.tab);
-        const tabNavigatorConfig = {
-            tabBarPosition: 'bottom',
-        };
-        MainTabNavigator = tabNavigator(routeConfig, tabNavigatorConfig);
-        break;
-    default:
-
+case 'tab':
+    MainRouter = generateTabRouter(initialPageJSON.tab, routes, generateRouteComponent);
+    break;
+default:
 }
+// Tabs
+// let MainTabNavigator;
+// switch (initialPageJSON.type) {
+//     case 'tab':
+//         const routeConfig = generateTabRouteConfig(initialPageJSON.tab);
+//         const tabNavigatorConfig = {
+//             tabBarPosition: 'bottom',
+//         };
+//         MainTabNavigator = tabNavigator(routeConfig, tabNavigatorConfig);
+//         break;
+//     default:
 
-function generateStackNavigator(customStackConfig, customRouteConfigMap) {
-    const defaultRouteConfigMap = {
-        Master: {
-            screen: MainTabNavigator,
-            path: 'master',
-        },
-        DynamicDetail: {
-            screen: withNavigation(DynamicView),
-            path: 'YESMOBILE/:metaKey/:id/:status',
-        },
-        DynamicDetail1: {
-            screen: withNavigation(DynamicView),
-            path: 'YES/:metaKey/:id/:status',
-        },
-        Workitem: {
-            screen: withNavigation(WorkitemView),
-            path: 'WORKITEM/:wid',
-        },
-        WorkitemField: {
-            screen: withNavigation(FieldView),
-            path: 'WORKITEM/:wid/:field',
-        },
-        DynamicMulti: {
-            screen: withNavigation(DynamicView),
-            path: 'YESMOBILE/:metaKey/:status',
-        },
-    };
-    const defaultStackConfig = {
-        headerMode: 'none',
-    };
-    const routeConfigMap = Object.assign(defaultRouteConfigMap, customRouteConfigMap);
-    const stackConfig = Object.assign(customStackConfig, defaultStackConfig);
-    return stackNavigator(routeConfigMap, stackConfig);
-}
+// }
 
-const stackConfigOfCard = {
-    mode: 'card',
-};
-const stackConfigOfModal = {
-    mode: 'modal',
-    cardStyle: {
-        backgroundColor: 'rgba(0,0,0,0.25)',
-        justifyContent: 'center',
-        paddingLeft: 24,
-        paddingRight: 24,
-    },
-    navigationOptions: {
-        header: null,
-    },
-};
-const MainCardNavigator = generateStackNavigator(stackConfigOfCard);
-const MainModalNavigator = generateStackNavigator(stackConfigOfModal, {
-    globalLoading: {
-        screen: LoadingComp,
-        path: 'globalLoading',
-    },
-});
+// function generateStackNavigator(customStackConfig, customRouteConfigMap) {
+//     const defaultRouteConfigMap = {
+//         Master: {
+//             screen: MainTabNavigator,
+//             path: 'master',
+//         },
+//         DynamicDetail: {
+//             screen: withNavigation(DynamicView),
+//             path: 'YESMOBILE/:metaKey/:id/:status',
+//         },
+//         DynamicDetail1: {
+//             screen: withNavigation(DynamicView),
+//             path: 'YES/:metaKey/:id/:status',
+//         },
+//         Workitem: {
+//             screen: withNavigation(WorkitemView),
+//             path: 'WORKITEM/:wid',
+//         },
+//         WorkitemField: {
+//             screen: withNavigation(FieldView),
+//             path: 'WORKITEM/:wid/:field',
+//         },
+//         DynamicMulti: {
+//             screen: withNavigation(DynamicView),
+//             path: 'YESMOBILE/:metaKey/:status',
+//         },
+//     };
+//     const defaultStackConfig = {
+//         headerMode: 'none',
+//     };
+//     const routeConfigMap = Object.assign(defaultRouteConfigMap, customRouteConfigMap);
+//     const stackConfig = Object.assign(customStackConfig, defaultStackConfig);
+//     return stackNavigator(routeConfigMap, stackConfig);
+// }
 
-const MainNavigator = stackNavigator(
-    {
-        Card: {
-            screen: MainCardNavigator,
-            path: 'card',
-        },
-        Modal: {
-            screen: MainModalNavigator,
-            path: 'modal',
-        },
+// const stackConfigOfCard = {
+//     mode: 'card',
+// };
+// const stackConfigOfModal = {
+//     mode: 'modal',
+//     cardStyle: {
+//         backgroundColor: 'rgba(0,0,0,0.25)',
+//         justifyContent: 'center',
+//         paddingLeft: 24,
+//         paddingRight: 24,
+//     },
+//     navigationOptions: {
+//         header: null,
+//     },
+// };
+// const MainCardNavigator = generateStackNavigator(stackConfigOfCard);
+// const MainModalNavigator = generateStackNavigator(stackConfigOfModal, {
+//     globalLoading: {
+//         screen: LoadingComp,
+//         path: 'globalLoading',
+//     },
+// });
 
-    },
-    {
-        mode: 'card',
-        headerMode: 'screen',
-        cardStyle: {
-            backgroundColor: 'rgba(0,0,0,0.25)',
-            opacity: 1,
-        },
-        onTransitionStart: () => {
-            AppDispatcher.dispatch({
-                type: 'TRANSITIONSTART',
-            });
-        },
-        onTransitionEnd: () => {
-            AppDispatcher.dispatch({
-                type: 'TRANSITIONEND',
-            });
-        },
-    },
-);
+// const MainNavigator = stackNavigator(
+//     {
+//         Card: {
+//             screen: MainCardNavigator,
+//             path: 'card',
+//         },
+//         Modal: {
+//             screen: MainModalNavigator,
+//             path: 'modal',
+//         },
+
+//     },
+//     {
+//         mode: 'card',
+//         headerMode: 'screen',
+//         cardStyle: {
+//             backgroundColor: 'rgba(0,0,0,0.25)',
+//             opacity: 1,
+//         },
+//         onTransitionStart: () => {
+//             AppDispatcher.dispatch({
+//                 type: 'TRANSITIONSTART',
+//             });
+//         },
+//         onTransitionEnd: () => {
+//             AppDispatcher.dispatch({
+//                 type: 'TRANSITIONEND',
+//             });
+//         },
+//     },
+// );
 
 AppDispatcher.register((action) => {
     switch (action.type) {
-        case 'WORKFLOWCHANGE':
-            setTimeout(() => {
+    case 'WORKFLOWCHANGE':
+        setTimeout(() => {
                 BillformStore.reloadFormData('TSL_ToDoList.-1');
             }, 0);
-            break;
-        default:
+        break;
+    default:
     }
 });
 
@@ -168,7 +200,7 @@ AppDispatcher.register((action) => {
 //     );
 // }
 
-appOptions.router = MainNavigatorWrapper;
+appOptions.router = MainRouter;
 appOptions.mock = true;
 appOptions.debug = true;
 export default appOptions;

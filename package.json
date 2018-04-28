@@ -15,11 +15,17 @@
     "react-dom": "^15.5.4"
   },
   "dependencies": {
+    "antd-mobile": "^2.1.8",
     "babel-polyfill": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
     "base-64": "^0.1.0",
     "decimal.js": "^7.1.1",
     "empty": "^0.10.1",
+    "yes-common": "^1.0.1",
+    "yes-core": "^0.x",
+    "yes-intf": "^1.0.3",
+    "yes-native": "^1.0.5",
+    "yes-prop-types": "^1.0.1",
     "fastclick": "^1.0.6",
     "flux": "^3.1.0",
     "font-awesome": "^4.6.3",
@@ -70,9 +76,10 @@
     "yes-common": "^1.0.1",
     "yes-core": "^0.x",
     "yes-intf": "^1.0.3",
-    "yes-native": "^1.0.3",
+    "yes-native": "^1.0.5",
     "yes-prop-types": "^1.0.1",
-    "yes-web": "^1.0.1"
+    "yes-web": "^1.0.1",
+    "yes-router": "^1.0.1"
   },
   "devDependencies": {
     "@storybook/react": "^3.0.0",

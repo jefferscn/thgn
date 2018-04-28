@@ -1,0 +1,115 @@
+{
+    "formTemplate": "tabs",
+    "mergeGridLayout": true,
+    "mergeGridLayoutTitle": "基础",
+    "tabs": [
+        {
+            "caption": "基本",
+            "items": [
+                {
+                    "isGroup": false,
+                    "items": [
+                        "AuditOpinion",
+                        "Creater",
+                        "BillDate",
+                        "BillNo",
+                        "ApplicantName",
+                        "ApplicantDeptName",
+                        "ListView1"
+                    ]
+                },
+                {
+                    "caption": "支付相关",
+                    "isGroup": true,
+                    "items": [
+                        {
+                            "caption": "付款申请类型",
+                            "key": "PayCategory"
+                        },
+                        "Code1688",
+                        "Actual_Pay_Amount",
+                        "OU_NAME",
+                        "CURRENCY",
+                        "VENDOR_NAME",
+                        "Vendor_Branch_name",
+                        {
+                            "caption": "预付",
+                            "key": "IsPrePay"
+                        },
+                        "Pay_Date",
+                        "BU",
+                        "Accountant_Name"
+                    ]
+                }
+            ]
+        },
+        {
+            "caption": "附件",
+            "items": [
+                "AttachmentGrid"
+            ]
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
+        }
+    ],
+    "cellList": [],
+    "controls": {
+        "AttachmentGrid": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path"
+                }
+            },
+            "itemNumberOfLines": 2,
+            "clickMode": "button",
+            "clickYigoId": "Preview",
+            "secondKey": [
+                "UploadOperator",
+                "UploadTime"
+            ]
+        },
+        "ListView1": {
+            "control": "Timeline",
+            "timeColumn": "finishTime",
+            "titleColumn": "workItemName",
+            "timeContainerStyle": {
+                "backgroundColor": "gold",
+                "borderRadius": 16
+            },
+            "circleSize": 26,
+            "innerCircle": {
+                "type": "element",
+                "elementType": "AuditIcon",
+                "elementProps": {
+                    "yigoid": "Audit_Result",
+                    "size": 26
+                }
+            },
+            "separator": true,
+            "descColumn": "userInfo",
+            "imageColumn": {
+                "type": "element",
+                "elementType": "Avatar",
+                "elementProps": {
+                    "yigoid": "operatorID"
+                }
+            }
+        }
+    },
+    "ignoredControl": [
+        "Grid1",
+        "Grid2",
+        "Grid3"
+    ]
+}

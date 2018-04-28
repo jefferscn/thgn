@@ -1,1 +1,1 @@
-export default from '../config/billform.json';
+export default from '../config/billforms';

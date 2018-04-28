@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Components } from 'yes-platform'; // eslint-disable-line
 import defaultTemplateMapping from './template/defaultTemplateMapping';
-import billform from './billform';
-import FieldView from './FieldView';
+import billform from './config/billforms';
 import PropTypes from 'prop-types';
 import CustomControls from './config/control.js';
 
@@ -62,6 +61,7 @@ export default class TemplateView extends PureComponent {
         // 支持反向模版
         extraProps = billform.default;
         const [fKey, tKey] = formKey.split('|');
+       
         if (billform[fKey]) {
             extraProps = Object.assign({}, extraProps, billform[fKey]);
         }
