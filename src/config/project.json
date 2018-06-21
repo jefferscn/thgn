@@ -1,5 +1,5 @@
 {
     "sessionKey": "thgn",
-    "serverPath":"http://192.168.123.7:8089/yigo",
+    "serverPath":"http://10.40.1.62:8089/yigo",
     "appName": "yesdemo"
 }

@@ -1,14 +1,4 @@
 {
-    "type":"tab",
-    "tab":[{
-        "formKey": "TSL_ToDoList",
-        "title": "待办",
-        "key": "TodoList",
-        "headerRight": true
-    },{
-        "formKey": "MOA_Employee",
-        "title": "我的",
-        "key": "My",
-        "headerRight": true
-    }]
+    "type":"custom",
+    "page": "Home"
 }

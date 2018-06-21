@@ -4,10 +4,11 @@ import webpack from 'webpack';
 const { ProvidePlugin, DefinePlugin, NamedModulesPlugin } = webpack;
 export default (options) => ({
     resolve: {
+        extensions: ['.js', '.web.js'],
         alias: {
             'react-native': 'react-native-web',
             'yes-platform': 'yes-web',
-            yes: 'yes-intf'
+            yes: 'yes-intf',
         },
     },
     entry: options.entry,

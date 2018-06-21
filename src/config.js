@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { AppDispatcher, BillformStore } from 'yes';
 import {
-    StackNavigator as stackNavigator,
-    TabNavigator as tabNavigator,
     withNavigation,
+    createMaterialTopTabNavigator,
 } from 'react-navigation';
 import DynamicView from './DynamicView';
 import WorkitemView from './WorkitemView';
@@ -15,8 +14,12 @@ import loginJSON from './config/login.json';
 import initialPageJSON from './config/initialPage.json';
 import control from './config/control.js';
 import { ControlMappings, Switch } from 'yes-platform';
-import { generateTabRouter } from 'yes-router';
+import { generateTabRouter, generatePageRouter } from 'yes-router';
 import generateRouteComponent from './util/generateRouteComponent';
+import trinasolarAuthenticatedRoute from './util/AuthenticatedRoute';
+import { Linking } from 'react-native';
+import { getExtra } from './util/trinasolarApi';
+
 const { sessionKey, serverPath, appName } = projectJSON;
 const { template, tooltip, companyName, bgImagePath, logoImagePath } = loginJSON;
 
@@ -44,7 +47,52 @@ const appOptions = {
 
 };
 
+const TodoTab = createMaterialTopTabNavigator(
+    {
+        Unfinished: {
+            screen: generateRouteComponent({
+                formKey: 'TSL_ToDoList',
+                title: '待办',
+                key: 'TodoList',
+                oid: -1,
+                status: 'DEFAULT',
+            }),
+        },
+        Focused: {
+            screen: generateRouteComponent({
+                formKey: 'OA_FocusWorkflow',
+                title: '关注',
+                key: 'focusworkflow',
+                oid: -1,
+                status: 'DEFAULT',
+            }),
+
+        },
+    }, {
+        headerMode: 'none',
+        navigationOptions: {
+            title: '我审批的',
+        },
+        // onTransitionStart: () => {
+        //     AppDispatcher.dispatch({
+        //         type: 'TRANSITIONSTART',
+        //     });
+        // },
+        // onTransitionEnd: () => {
+        //     AppDispatcher.dispatch({
+        //         type: 'TRANSITIONEND',
+        //     });
+        // },
+    }
+);
 const routes = {
+    TodoList: {
+        screen: TodoTab,
+        path: 'TodoList',
+        navigationOptions: {
+            title: '我审批的',
+        },
+    },
     DynamicDetail: {
         screen: withNavigation(DynamicView),
         path: 'YESMOBILE/:metaKey/:id/:status',
@@ -69,10 +117,18 @@ const routes = {
 
 let MainRouter = null;
 switch (initialPageJSON.type) {
-case 'tab':
-    MainRouter = generateTabRouter(initialPageJSON.tab, routes, generateRouteComponent);
-    break;
-default:
+    case 'tab':
+        MainRouter = generateTabRouter(initialPageJSON.tab, routes, generateRouteComponent);
+        break;
+    case 'custom':
+        const customScreen = control[initialPageJSON.page];
+        MainRouter = generatePageRouter(customScreen, routes);
+        break;
+    case 'page':
+        const homeScreen = generateRouteComponent(initialPageJSON.page);
+        MainRouter = generatePageRouter(homeScreen, routes);
+        break;
+    default:
 }
 // Tabs
 // let MainTabNavigator;
@@ -180,15 +236,29 @@ default:
 
 AppDispatcher.register((action) => {
     switch (action.type) {
-    case 'WORKFLOWCHANGE':
-        setTimeout(() => {
+        case 'WORKFLOWCHANGE':
+            setTimeout(() => {
                 BillformStore.reloadFormData('TSL_ToDoList.-1');
             }, 0);
-        break;
-    default:
+            break;
+        default:
     }
 });
 
+Linking.getInitialURL = async () => {
+    // const hash = (window || this).location.hash;
+    // const relativePath = hash.slice(1);
+    try {
+        const extra = await getExtra();
+        if (extra && extra.workflowItem) {
+            const relativePath = `card/WORKITEM/${extra.workflowItem}`;
+            return `://${relativePath}`;
+        }
+        return null;
+    } catch (ex) {
+        return null;
+    }
+};
 // function MainNavigatorWrapper(props) {
 //     return (
 //         <MainNavigator
@@ -203,4 +273,5 @@ AppDispatcher.register((action) => {
 appOptions.router = MainRouter;
 appOptions.mock = true;
 appOptions.debug = true;
+// appOptions.authenticatedRoute = trinasolarAuthenticatedRoute;
 export default appOptions;

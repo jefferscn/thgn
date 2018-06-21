@@ -5,6 +5,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 export default (DEBUG, PATH, PORT = 3000) => {
     return ({
         resolve: {
+            extensions: ['.js', '.web.js'],
             alias: {
                 'react-native': 'react-native-web',
                 'yes-platform': 'yes-web',
@@ -41,6 +42,7 @@ export default (DEBUG, PATH, PORT = 3000) => {
                         path.resolve(__dirname, '../node_modules/react-native-tableview-simple/'),
                         path.resolve(__dirname, '../node_modules/react-native-vector-icons/'),
                         path.resolve(__dirname, '../node_modules/react-native-tab-view/'),
+                        path.resolve(__dirname, '../node_modules/react-native-safe-area-view/'),
                         path.resolve(__dirname, '../node_modules/react-navigation/'),
                         path.resolve(__dirname, '../node_modules/react-native-web/'),
                         path.resolve(__dirname, '../src'),
@@ -93,6 +95,7 @@ export default (DEBUG, PATH, PORT = 3000) => {
         },
         plugins: DEBUG
             ? [
+                new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"debug"', __DEV__: true }),
                 new HtmlWebpackPlugin({
                     template: './index.html',
                 }),

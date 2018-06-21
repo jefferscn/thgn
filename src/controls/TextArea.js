@@ -11,6 +11,11 @@ class TextArea extends PureComponent {
             text: val,
         });
     }
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            text: nextProps.displayValue,
+        });
+    }
     onBlur = () => {
         console.log('blur');
         Util.blurExec(() => {
@@ -21,6 +26,7 @@ class TextArea extends PureComponent {
     render() {
         return (
             <TextareaItem
+                value={this.state.text}
                 onChange={this.onChange}
                 onBlur={this.onBlur}
                 editable={!this.props.disabled}

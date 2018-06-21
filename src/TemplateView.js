@@ -33,7 +33,7 @@ export default class TemplateView extends PureComponent {
             return {};
         }
         const key = `${fKey}_${yigoid}`;
-        let props = controls[yigoid];
+        const props = controls[yigoid];
         if (props) {
             this.calculateElement(props);
             this.controlProps[key] = props;
@@ -48,6 +48,15 @@ export default class TemplateView extends PureComponent {
         }
         for (const key in props) {
             const ele = props[key];
+            if (Array.isArray(ele)) {
+                for (let i = 0; i < ele.length; i++) {
+                    const ele1 = ele[i];
+                    if (ele1 && ele1.type === 'element') {
+                        const CC = CustomControls[ele1.elementType];
+                        ele[i] = <CC {...ele1.elementProps} />;
+                    }
+                }
+            }
             if (ele && ele.type === 'element') {
                 const Control = CustomControls[ele.elementType];
                 props[key] = <Control {...ele.elementProps} />;
@@ -61,7 +70,7 @@ export default class TemplateView extends PureComponent {
         // 支持反向模版
         extraProps = billform.default;
         const [fKey, tKey] = formKey.split('|');
-       
+
         if (billform[fKey]) {
             extraProps = Object.assign({}, extraProps, billform[fKey]);
         }

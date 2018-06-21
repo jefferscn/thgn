@@ -35,9 +35,8 @@
         {
             "caption": "附件",
             "isGroup": false,
-            "items": [
-                "AttachmentGrid"
-            ]
+            "isGrid": true,
+            "grid":"AttachmentGrid"
         },
         {
             "caption": "审批历史",
@@ -50,6 +49,11 @@
         "AuditOpinion": {
             "control": "TextArea",
             "placeholder": "请输入审批意见",
+            "autoHeight": true
+        },
+        "Reason": {
+            "control": "TextArea",
+            "placeholder": "请输入请假理由",
             "autoHeight": true
         },
         "AttachmentGrid": {
@@ -65,11 +69,20 @@
                     "yigoid": "Path"
                 }
             },
+            "addNewRow": "",
             "empty": "没有附件",
             "itemNumberOfLines": 2,
             "actions": [
                 "Preview"
             ],
+            "actionButton":{
+                "type": "element",
+                "elementType": "AttachmentAction",
+                "elementProps": {
+                    "tableKey": "Attachment_Detail",
+                    "yigoid": "AttachmentGrid"
+                }
+            },
             "secondKey": [
                 "UploadOperator",
                 "UploadTime"

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { View } from 'react-native';
 import { TableView, Section } from 'react-native-tableview-simple';
 import { Components } from 'yes-platform'; // eslint-disable-line import/no-unresolved
 import { DynamicControl } from 'yes'; // eslint-disable-line import/no-unresolved
@@ -39,8 +40,9 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                             yigoid={item.key || item}
                             isCustomLayout
                             showLabel={false}
-                            hideWhenEmptyValue
-                            layoutStyles={{ minHeight: 44, justifyContent: 'flex-end', alignItems: 'center', textAlign: 'right' }}
+                            contentContainerStyle={{ justifyContent: 'flex-end', alignItems: 'center' }}
+                            // hideWhenEmptyValue
+                            layoutStyles={{ minHeight: 44, textAlign: 'right' }}
                             layout={this.getLayout(item)}
                             {...this.context.getControlProps(item.key || item)}
                         />
@@ -59,6 +61,16 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
     }
 
     render() {
+        if (this.props.isGrid) {
+            return (<View style={{ flex: 1 }}>
+                <DynamicControl
+                    key={this.props.grid}
+                    yigoid={this.props.grid}
+                    isCustomLayout
+                    {...this.context.getControlProps(this.props.grid)}>
+                </DynamicControl>
+            </View>);
+        }
         return (
             <ScrollView>
                 <TableView>
@@ -72,9 +84,10 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                                                 key={item.key || item}
                                                 yigoid={item.key || item}
                                                 isCustomLayout
+                                                contentContainerStyle={{ justifyContent: 'flex-end', alignItems: 'center' }}
                                                 showLabel={false}
-                                                hideWhenEmptyValue
-                                                layoutStyles={{ minHeight: 44, justifyContent: 'flex-end', alignItems: 'center', textAlign: 'right' }}
+                                                // hideWhenEmptyValue
+                                                layoutStyles={{ minHeight: 44, textAlign: 'right' }}
                                                 layout={this.getLayout(item)}
                                                 {...this.context.getControlProps(item.key || item)}
                                             />
@@ -85,8 +98,9 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
                                             yigoid={section.key || section}
                                             isCustomLayout
                                             showLabel={false}
-                                            hideWhenEmptyValue
-                                            layoutStyles={{ minHeight: 44, justifyContent: 'flex-end', alignItems: 'center', textAlign: 'right' }}
+                                            contentContainerStyle={{ justifyContent: 'flex-end', alignItems: 'center' }}
+                                            // hideWhenEmptyValue
+                                            layoutStyles={{ minHeight: 44, textAlign: 'right' }}
                                             layout={this.getLayout(section)}
                                             {...this.context.getControlProps(section.key || section)}
                                         />

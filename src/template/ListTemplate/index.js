@@ -13,8 +13,9 @@ class ListTemplate extends PureComponent {
     render() {
         return (
             <BillForm
-                formKey="TSL_ToDoList"
-                entry="TSL/OA_ToDoList"
+                formKey={this.props.formKey}
+                oid={-1}
+                status={'DEFAULT'}
             >
                 <View style={{ flex: 1 }}>
                     <TextLinkList

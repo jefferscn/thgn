@@ -11,8 +11,7 @@ class TabViewTemplate extends TabView {
         const routes = this.props.itemList.map((item, index) => ({
             key: item.key || index,
             title: item.caption,
-            layoutType: item.layoutType,
-            items: item.items,
+            ...item,
         }));
         this.setState({
             routes,
@@ -24,7 +23,7 @@ class TabViewTemplate extends TabView {
             <CellLayout
                 items={route.items}
                 layoutType={route.layoutType}
-                yigoid={route.key}
+                {...route}
             />
         );
     }

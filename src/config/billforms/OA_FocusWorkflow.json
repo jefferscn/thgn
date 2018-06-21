@@ -1,0 +1,45 @@
+{
+    "formTemplate": "normal",
+    "items": [
+        "list"
+    ],
+    "controls": {
+        "list": {
+            "control": "TextLinkList",
+            "primaryKey": "Topic",
+            "style": {
+                "primaryText": {
+                    "fontSize": 12,
+                    "whiteSpace": "nowrap",
+                    "textAlign": "left"
+                },
+                "secondaryText": {
+                    "fontSize": 10,
+                    "whiteSpace": "nowrap"
+                },
+                "tertiaryText": {
+                    "fontSize":10,
+                    "textAlign":"left"
+                }
+            },
+            "leftElement": {
+                "type": "element",
+                "elementType": "WorkflowIcon",
+                "elementProps": {
+                    "yigoid": "ProcessKey"
+                }
+            },
+            "secondKey": [
+                "EmpID",{
+                    "yigoid":"InstanceState",
+                    "layoutStyles":{
+                        "justifyContent":"flex-end"
+                    }
+                }
+            ],
+            "tertiaryKey": [
+                "WorkitemName"
+            ]
+        }
+    }
+}
