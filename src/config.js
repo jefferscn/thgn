@@ -273,5 +273,8 @@ Linking.getInitialURL = async () => {
 appOptions.router = MainRouter;
 appOptions.mock = true;
 appOptions.debug = true;
-// appOptions.authenticatedRoute = trinasolarAuthenticatedRoute;
+appOptions.authenticatedRoute = trinasolarAuthenticatedRoute;
+if (__DEV__) {
+    appOptions.authenticatedRoute = null;
+}
 export default appOptions;

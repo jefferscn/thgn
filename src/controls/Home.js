@@ -125,7 +125,7 @@ export default class Home extends PureComponent {
         return {
             title: '审批',
             headerLeft: (
-                <HeaderBackButton onClick={exitApp} title="返回" />
+                <HeaderBackButton onPress={exitApp} title="返回" />
             ),
             headerStyle: {
                 backgroundColor: '#2196f3',

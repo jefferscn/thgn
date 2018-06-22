@@ -15,6 +15,7 @@
     "react-dom": "^15.5.4"
   },
   "dependencies": {
+    "animated":"git+https://github.com/289420843/animated.git",
     "babel-polyfill": "^6.5.0",
     "babel-preset-stage-3": "^6.5.0",
     "base-64": "^0.1.0",
@@ -55,7 +56,7 @@
     "react-native-tableview-simple": "^0.16.13",
     "react-native-vector-icons": "github:jefferscn/react-native-vector-icons",
     "react-native-web": "github:jefferscn/react-native-web#port_virtualized_list",
-    "react-navigation": "github:jefferscn/react-navigation",
+    "react-navigation": "^2.4.1",
     "react-style-proptype": "^3.0.0",
     "react-swipeable": "^3.4.0",
     "react-swipeable-views": "^0.7.10",
