@@ -81,9 +81,9 @@ const TodoTab = createMaterialTopTabNavigator(
         },
         Focused: {
             screen: generateRouteComponent({
-                formKey: 'OA_FocusWorkflow',
+                formKey: 'TSL_DoneWorkflow',
                 title: '我已审批的',
-                key: 'focusworkflow',
+                key: 'doneworkflow',
                 oid: -1,
                 status: 'DEFAULT',
             }),

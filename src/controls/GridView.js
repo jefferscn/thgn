@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { ListView, PullToRefresh } from 'antd-mobile';
 import { View, ActivityIndicator } from 'react-native';
 import { propTypes } from 'yes'; // eslint-disable-line
-import { ListRowWrap as listRowWrap, ListWrap, DynamicControl, GridWrap } from 'yes';
+import { GridRowWrap as gridRowWrap, DynamicControl, GridWrap } from 'yes';
 // import styles from '../../style';
 import ListViewItem from './ListViewItem';
 
@@ -29,25 +29,25 @@ class AntdListView extends PureComponent {
     };
 
     componentWillReceiveProps(nextProps) {
-        const data = nextProps.controlState.get('data');
+        const data = nextProps.controlState.getIn(['dataModel', 'data']);
         if (data) {
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(nextProps.controlState.get('data'), this.generateRowIdentifier(nextProps)),
+                dataSource: this.state.dataSource.cloneWithRows(nextProps.controlState.getIn(['dataModel', 'data']), this.generateRowIdentifier(nextProps)),
             });
         }
     }
 
     componentWillMount() {
-        if (this.props.controlState && this.props.controlState.get('data')) {
+        if (this.props.controlState && this.props.controlState.getIn(['dataModel', 'data'])) {
             this.setState({
-                dataSource: this.state.dataSource.cloneWithRows(this.props.controlState.get('data'),
+                dataSource: this.state.dataSource.cloneWithRows(this.props.controlState.getIn(['dataModel', 'data']),
                     this.generateRowIdentifier(this.props)),
             });
         }
     }
 
     generateRowIdentifier = (props) => {
-        const data = props.controlState.get('data');
+        const data = props.controlState.getIn(['dataModel', 'data']);
         const result = [];
         for (let i = 0; i < data.size; i++) {
             result.push(i);
@@ -149,7 +149,7 @@ class AntdListView extends PureComponent {
             {this.generateTertiaryElement()}
         </View>
     )
-    NewListItem = listRowWrap(ListViewItem, this.props.yigoid)
+    NewListItem = gridRowWrap(ListViewItem, ActivityIndicator, this.props.yigoid)
     // RowView = listRowWrap(View, this.props.yigoid)
     renderItem = (item, secionId, rowId, highlightRow) => {
         const NewListItem = this.NewListItem;
@@ -173,7 +173,7 @@ class AntdListView extends PureComponent {
         return (
             <NewListItem
                 centerElement={this.centerComp}
-                // rightElement={this.props.rightElement}
+                rightElement={this.props.rightElement}
                 containerStyle={this.props.rowStyle}
                 onPress={() => this.onClick(rowId)}
                 // divider={this.props.divider}
@@ -212,5 +212,4 @@ class AntdListView extends PureComponent {
 }
 AntdListView.propTypes = propTypes.List;
 
-export const GridView = GridWrap(AntdListView);
-export default ListWrap(AntdListView);
+export default GridWrap(AntdListView);

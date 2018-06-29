@@ -9,6 +9,7 @@ import OA_TransferTask from './OA_TransferTask.json';
 import B_PO_CHNISBUP from './B_PO_CHNISBUP.json';
 import B_TravelExpenseApply from './B_TravelExpenseApply.json';
 import B_SalContrCN from './B_SalContrCN.json';
+import TSL_DoneWorkflow from './TSL_DoneWorkflow.json';
 
 export default {
     default: defaultForm,
@@ -22,4 +23,5 @@ export default {
     B_PO_CHNISBUP,
     B_TravelExpenseApply,
     B_SalContrCN,
+    TSL_DoneWorkflow,
 };

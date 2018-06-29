@@ -3,3 +3,4 @@ import './ModalTemplate';
 import './ListTemplate';
 import './DynamicTemplate';
 import './NormalTemplate';
+import './CustomTemplate';

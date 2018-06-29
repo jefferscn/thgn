@@ -15,9 +15,10 @@ import ListView from '../controls/ListView';
 import TodoBadget from '../controls/TodoBadget';
 import FromTo from '../controls/FormTo';
 import ControlWithLabel from '../controls/CotnrolWithLabel';
-import Flexbox from '../controls/Flexbox.js';
+import Flexbox from '../controls/Flexbox';
+import TSL_DoneWorkflow from '../controls/TSL_DoneWorkflow';
 
 export default { Login1, Login2, CellLayoutList, DateText, Timeline, Avatar,
     TextArea, TextLinkList, WorkflowIcon, AttachmentAction, Home, ListView,
-    TodoBadget, FromTo, ControlWithLabel, Flexbox,
+    TodoBadget, FromTo, ControlWithLabel, Flexbox, TSL_DoneWorkflow,
     AuditIcon, TextGrid, PathText, ListRightElement };
