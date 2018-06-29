@@ -2,13 +2,18 @@ import React, { PureComponent } from 'react';
 import { Text } from 'react-native';
 import { ControlWrap as controlWrap } from 'yes';
 
-class PathText extends PureComponent {
+class PureUserName extends PureComponent {
+    reg = /[^\(\)]+(?=\))/g
     calcText() {
         if (!this.props.displayValue) {
             return '';
         }
-        const txt = this.props.displayValue.split('/').pop();
-        return txt;
+        const result = this.props.displayValue.match(this.reg);
+        if (result.length > 0) {
+            const nameTmp = result[0];
+            return nameTmp.split('_')[0];
+        }
+        return this.displayValue;
     }
     render() {
         return (
@@ -17,4 +22,4 @@ class PathText extends PureComponent {
     }
 }
 
-export default controlWrap(PathText);
+export default controlWrap(PureUserName);

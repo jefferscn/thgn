@@ -1,0 +1,359 @@
+{
+    "formTemplate": "tabs",
+    "mergeGridLayout": true,
+    "mergeGridLayoutTitle": "基础",
+    "items": [
+        "AuditOpinion",
+        "BillDate",
+        "NO",
+        "Creator",
+        "CreatorDeptName",
+        "ApplicantName",
+        "ApplicantDeptName",
+        "Position_Descr",
+        "OU_Name",
+        "CostCenterName",
+        {
+            "caption": "是否预算控制",
+            "key": "IsProject"
+        },
+        {
+            "caption": "是否超标准",
+            "key": "IsOverstandard"
+        },
+        {
+            "caption": "出差(探亲)信息",
+            "isGroup": true,
+            "items": [
+                "APPLICATION_TYPE",
+                "APPLICANT_DATE_FROM",
+                "APPLICANT_DATE_TO",
+                "IsDeductedDesc"
+            ]
+        },
+        "detail"
+    ],
+    "tabs": [
+        {
+            "caption": "基本",
+            "isGroup": false,
+            "items": [
+                "AuditOpinion",
+                "BillDate",
+                "NO",
+                "Creator",
+                "CreatorDeptName",
+                "ApplicantName",
+                "ApplicantDeptName",
+                "Position_Descr",
+                "OU_Name",
+                "CostCenterName",
+                {
+                    "caption": "是否预算控制",
+                    "key": "IsProject"
+                },
+                "TRIP_BUDGET_DES",
+                {
+                    "caption": "是否超标准",
+                    "key": "IsOverstandard"
+                },
+                {
+                    "caption": "出差(探亲)信息",
+                    "isGroup": true,
+                    "items": [
+                        "APPLICATION_TYPE",
+                        "APPLICANT_DATE_FROM",
+                        "APPLICANT_DATE_TO",
+                        "IsDeductedDesc"
+                    ]
+                },
+                {
+                    "caption": "路程信息",
+                    "isGroup": true,
+                    "items": [
+                        "detail"
+                    ]
+                },
+                {
+                    "caption": "费用信息",
+                    "isGroup": true,
+                    "items": [
+                        {
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": ""
+                                    },
+                                    {
+                                        "text": "个人代付"
+                                    },
+                                    {
+                                        "text": "公司代付"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "补助"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_MEALS"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_MEALS"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "住宿费"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_ACCOMMODATION"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_ACCOMMODATION"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "交通费"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_TRANSPORTATION"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_TRANSPORTATION"
+                                    }
+                                ]
+                            }
+                        },{
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "机票"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_AIR"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_AIR"
+                                    }
+                                ]
+                            }
+                        },{
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "通讯费"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_COMMUNICATION"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_COMMUNICATION"
+                                    }
+                                ]
+                            }
+                        },{
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "租车费"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_LENDCAR"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_LENDCAR"
+                                    }
+                                ]
+                            }
+                        },{
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "油费"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_CAR"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_CAR"
+                                    }
+                                ]
+                            }
+                        },{
+                            "type": "element",
+                            "elementType": "Flexbox",
+                            "elementProps": {
+                                "items": [
+                                    {
+                                        "text": "合计"
+                                    },
+                                    {
+                                        "yigoid": "P_TRIP_FEE_Amount"
+                                    },
+                                    {
+                                        "yigoid": "C_TRIP_FEE_Amount"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },{
+                    "caption": "招待费",
+                    "isGroup": true,
+                    "visibleNotEmpty": "GUEST_AMOUNT_AP",
+                    "items": ["GUEST_BUDGET_DESC","GUEST_AMOUNT_AP","GUEST_DESC"]
+                }
+            ]
+        },
+        {
+            "caption": "附件",
+            "isGroup": false,
+            "isGrid": true,
+            "grid": "AttachmentGrid"
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
+        }
+    ],
+    "controls": {
+        "AuditOpinion": {
+            "control": "TextArea",
+            "placeholder": "请输入审批意见",
+            "autoHeight": true
+        },
+        "IsDeductedDesc": {
+            "control": "TextArea",
+            "placeholder": "请输入目的概述",
+            "autoHeight": true
+        },
+        "GUEST_DESC": {
+            "control": "TextArea",
+            "placeholder": "请输招待费说明",
+            "autoHeight": true
+        },
+        "AttachmentGrid": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path"
+                }
+            },
+            "addNewRow": "",
+            "empty": "没有附件",
+            "itemNumberOfLines": 2,
+            "actions": [
+                "Preview"
+            ],
+            "actionButton": {
+                "type": "element",
+                "elementType": "AttachmentAction",
+                "elementProps": {
+                    "tableKey": "Attachment_Detail",
+                    "yigoid": "AttachmentGrid"
+                }
+            },
+            "secondKey": [
+                "UploadOperator",
+                "UploadTime"
+            ]
+        },
+        "detail": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "FromTo",
+                "elementProps": {
+                    "isCustomLayout": true,
+                    "from": "FROM_CITY_NAME",
+                    "to": "TO_CITY_NAME"
+                }
+            },
+            "itemNumberOfLines": 3,
+            "secondKey": [
+                {
+                    "type": "element",
+                    "elementType": "ControlWithLabel",
+                    "elementProps": {
+                        "label": "开始时间",
+                        "yigoid": "startdate"
+                    }
+                },
+                {
+                    "type": "element",
+                    "elementType": "ControlWithLabel",
+                    "elementProps": {
+                        "label": "结束时间",
+                        "yigoid": "Enddate"
+                    }
+                }
+            ]
+        },
+        "ListView1": {
+            "control": "Timeline",
+            "timeColumn": "finishTime",
+            "titleColumn": "workItemName",
+            "timeContainerStyle": {
+                "backgroundColor": "gold",
+                "borderRadius": 16
+            },
+            "circleSize": 26,
+            "innerCircle": {
+                "type": "element",
+                "elementType": "AuditIcon",
+                "elementProps": {
+                    "yigoid": "Audit_Result",
+                    "size": 26
+                }
+            },
+            "separator": true,
+            "descColumn": "userInfo",
+            "imageColumn": {
+                "type": "element",
+                "elementType": "Avatar",
+                "elementProps": {
+                    "yigoid": "operatorID"
+                }
+            }
+        }
+    },
+    "ignoredControl": []
+}

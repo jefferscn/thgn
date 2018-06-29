@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Components } from 'yes-platform'; // eslint-disable-line import/no-unresolved
 import { getMappedComponentHOC } from 'yes'; // eslint-disable-line import/no-unresolved
 import defaultTemplateMapping from '../defaultTemplateMapping';
@@ -11,9 +11,9 @@ class NormalTemplate extends DynamicBillForm {
         const { items } = this.props;
         const form = this.getBillForm();
         if (form) {
-            return (<View><CellLayoutTemplate
+            return (<ScrollView><CellLayoutTemplate
                 items={items}
-            /></View>);
+            /></ScrollView>);
         }
         return <LoadingComp icon="loading" show>加载中...</LoadingComp>; // eslint-disable-line react/jsx-no-undef, max-len
     }

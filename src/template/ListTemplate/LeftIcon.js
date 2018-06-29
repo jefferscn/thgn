@@ -69,6 +69,7 @@ class LeftIcon extends PureComponent {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
+        width: 50,
     },
 });
 export default controlWrap(LeftIcon);

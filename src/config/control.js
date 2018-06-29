@@ -11,7 +11,13 @@ import TextArea from '../controls/TextArea';
 import WorkflowIcon from '../template/ListTemplate/LeftIcon';
 import AttachmentAction from '../controls/AttachmentAction';
 import Home from '../controls/Home';
+import ListView from '../controls/ListView';
+import TodoBadget from '../controls/TodoBadget';
+import FromTo from '../controls/FormTo';
+import ControlWithLabel from '../controls/CotnrolWithLabel';
+import Flexbox from '../controls/Flexbox.js';
 
 export default { Login1, Login2, CellLayoutList, DateText, Timeline, Avatar,
-    TextArea, TextLinkList, WorkflowIcon, AttachmentAction, Home,
+    TextArea, TextLinkList, WorkflowIcon, AttachmentAction, Home, ListView,
+    TodoBadget, FromTo, ControlWithLabel, Flexbox,
     AuditIcon, TextGrid, PathText, ListRightElement };

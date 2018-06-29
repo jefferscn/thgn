@@ -4,12 +4,41 @@ import { Components, History } from 'yes-platform';
 import { HeaderBackButton } from 'react-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { exitApp } from '../util/trinasolarApi';
+import TodoBadget from './TodoBadget';
+import { refreshTodoList } from '../store/actions';
+import { I18nManager } from 'react-native';
+import todoImg from '../img/myTodo.svg';
+import frommeImg from '../img/fromme.svg';
 
 const {
     BillForm,
 } = Components;
 
 const styles = StyleSheet.create({
+    NavTitle: {
+        color: 'white',
+        justifyContent: 'center',
+        display: 'flex',
+        flex: 1,
+    },
+    BackButton: {
+        height: 24,
+        width: 24,
+        margin: 16,
+        fontSize: 36,
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        resizeMode: 'contain',
+        transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+    },
+    Image: {
+        height: 30,
+        paddingRight: 6,
+    },
+    Text: {
+        paddingLeft: 20,
+    },
     Container: {
         flexDirection: 'column',
     },
@@ -28,6 +57,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         height: 75,
         alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'center',
         backgroundColor: 'white',
     },
@@ -120,13 +150,15 @@ const entries = [
         ],
     },
 ];
+
 export default class Home extends PureComponent {
     static navigationOptions = ({ navigation }) => {
         return {
             title: '审批',
             headerLeft: (
-                <HeaderBackButton onPress={exitApp} title="返回" />
+                <HeaderBackButton backImage={<Icon style={styles.BackButton} name='angle-left' />} onPress={exitApp} title="返回" />
             ),
+            headerTitleStyle: styles.NavTitle,
             headerStyle: {
                 backgroundColor: '#2196f3',
                 color: 'white',
@@ -136,6 +168,15 @@ export default class Home extends PureComponent {
     openTodoList = () => {
         History.push('card/TodoList');
     }
+    componentDidMount() {
+        this.timer = setInterval(refreshTodoList, 60 * 1000);
+    }
+    componentWillUnmount() {
+        clearInterval(this.timer);
+    }
+    componentWillMount() {
+        setTimeout(refreshTodoList, 0);
+    }
     render() {
         return (
             // <BillForm>
@@ -143,12 +184,16 @@ export default class Home extends PureComponent {
                 <View style={styles.NavView}>
                     <TouchableOpacity style={styles.NavItemContainer} onPress={this.openTodoList}>
                         <View style={styles.NavItem}>
-                            <Text>我审批的</Text>
+                            <TodoBadget>
+                                <img alt="" style={{ height: 30 }} src={todoImg} />
+                            </TodoBadget>
+                            <Text style={styles.Text}>我审批的</Text>
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.NavItemContainer} onPress={this.openTodoList}>
                         <View style={styles.NavItem}>
-                            <Text>我发起的</Text>
+                            <img alt="" style={{ height: 30 }} src={frommeImg} />
+                            <Text style={styles.Text}>我发起的</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

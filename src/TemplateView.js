@@ -8,6 +8,7 @@ import CustomControls from './config/control.js';
 export default class TemplateView extends PureComponent {
     static childContextTypes = {
         getControlProps: PropTypes.func,
+        createElement: PropTypes.func,
     }
 
     controlProps = {}
@@ -15,7 +16,16 @@ export default class TemplateView extends PureComponent {
     getChildContext() {
         return {
             getControlProps: this.getControlProps,
+            createElement: this.createElement,
         };
+    }
+
+    createElement(obj) {
+        if (obj && obj.type === 'element') {
+            const C = CustomControls[obj.elementType];
+            return <C {...obj.elementProps} />;
+        }
+        return obj;
     }
 
     getControlProps = (yigoid) => {

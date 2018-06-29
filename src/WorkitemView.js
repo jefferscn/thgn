@@ -10,11 +10,12 @@ const WorkitemBill = workitemWrap(BillForm, LoadingComp);
 export default class WorkitemView extends PureComponent {
     static navigationOptions = ({ navigation }) => {
         return {
-            headerTitle: <WorkitemBill workitemId={navigation.state.params.wid}>
+            headerTitle: <WorkitemBill hideLoading workitemId={navigation.state.params.wid}>
                 <FormInfo.FormCaption style={{ fontSize: 20 }} />
             </WorkitemBill>,
             headerRight: (
                 <WorkitemBill
+                    hideLoading
                     workitemId={navigation.state.params.wid}
                 >
                     <WorkflowOperationBar />

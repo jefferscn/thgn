@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { TableView, Section } from 'react-native-tableview-simple';
 import { Components } from 'yes-platform'; // eslint-disable-line import/no-unresolved
-import { DynamicControl } from 'yes'; // eslint-disable-line import/no-unresolved
+import { DynamicControl, controlVisibleWrapper, notEmptyVisibleWrapper } from 'yes'; // eslint-disable-line import/no-unresolved
 
 const { ScrollView, Layout } = Components;
 const { CellLayout } = Layout;
@@ -17,6 +17,9 @@ const styles = {
         flexBasis: 0,
     },
 };
+
+const RelatedSection = controlVisibleWrapper(Section);
+const NotEmptyRelatedSection = notEmptyVisibleWrapper(Section);
 class CellLayoutTemplate extends Component {  // eslint-disable-line
     static propTypes = {
         items: PropTypes.arrayOf(PropTypes.shape({
@@ -28,28 +31,41 @@ class CellLayoutTemplate extends Component {  // eslint-disable-line
 
     static contextTypes = {
         getControlProps: PropTypes.func,
+        createElement: PropTypes.func,
     }
 
     renderSection(section) {
+        let S = Section;
+        if (section.visibleNotEmpty) {
+            S = NotEmptyRelatedSection;
+        }
+        if (section.visibleRelation) {
+            S = RelatedSection;
+        }
+
         return (
-            <Section header={section.caption} hideSeparator>
+            <S yigoid={section.visibleRelation || section.visibleNotEmpty} sectionPaddingTop={10} sectionPaddingBottom={0} header={section.caption} hideSeparator>
                 {
-                    section.items.map((item) => (
-                        <DynamicControl
-                            key={item.key || item}
-                            yigoid={item.key || item}
-                            isCustomLayout
-                            showLabel={false}
-                            contentContainerStyle={{ justifyContent: 'flex-end', alignItems: 'center' }}
-                            // hideWhenEmptyValue
-                            layoutStyles={{ minHeight: 44, textAlign: 'right' }}
-                            layout={this.getLayout(item)}
-                            {...this.context.getControlProps(item.key || item)}
-                        />
-                    )
-                    )
+                    section.items.map((item) => {
+                        if (item.type === 'element') {
+                            return this.context.createElement(item);
+                        }
+                        return (
+                            <DynamicControl
+                                key={item.key || item}
+                                yigoid={item.key || item}
+                                isCustomLayout
+                                showLabel={false}
+                                contentContainerStyle={{ justifyContent: 'flex-end', alignItems: 'center' }}
+                                // hideWhenEmptyValue
+                                layoutStyles={{ minHeight: 44, textAlign: 'right' }}
+                                layout={this.getLayout(item)}
+                                {...this.context.getControlProps(item.key || item)}
+                            />
+                        )
+                    })
                 }
-            </Section>
+            </S>
         );
     }
 

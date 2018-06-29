@@ -14,8 +14,9 @@ import { Logined as logined, Logouted as logouted } from 'yes/dist/actions/AppSt
 import AppDispatcher from 'yes/dist/dispatchers/AppDispatcher';
 // import { getUserInfo, loadHistory, setSession } from 'yes/dist/session';
 import { getSsoToken, exitApp } from './trinasolarApi';
+import { LoadingComp } from 'yes-platform';
 
-const AuthenticatedRoute = (BaseComponent, LoginComponent, ToastComponent, key) => {
+const AuthenticatedRoute = (BaseComponent, LoginComponent, key) => {
     class AuthenticatedComponent extends Component {
         static getStores() {
             return [AppStatus];
@@ -71,7 +72,7 @@ const AuthenticatedRoute = (BaseComponent, LoginComponent, ToastComponent, key) 
                 }
                 return (<LoginComponent {...this.props} />);
             }
-            return <ToastComponent icon="loading" show>初始化...</ToastComponent>;
+            return <LoadingComp icon="loading" show>初始化...</LoadingComp>;
         }
     }
     const result = Container.create(AuthenticatedComponent);

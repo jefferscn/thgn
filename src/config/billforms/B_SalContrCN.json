@@ -1,37 +1,25 @@
 {
-    "formTemplate": "normal",
+    "formTemplate": "tabs",
     "mergeGridLayout": true,
     "mergeGridLayoutTitle": "基础",
     "items": [
-                "AuditOpinion",
-                "NO",
-                "Creator",
-                "CreatorDeptName",
-                "ApplicantName",
-                "ApplicantDeptName",
-                "Position_Descr",
-                "EmployeeType",
-                "StartingDate",
-                "ItemSort",
-                "YearHolidaysSurplus",
-                "SickLeaveSurplus",
-                "AdjustToRest",
-                "Reason",
-                {
-                    "caption": "请假时间段",
-                    "isGroup": true,
-                    "items": [
-                        "LeaveDateFrom",
-                        "LeaveDateTo",
-                        "LeaveSumDay"
-                    ]
-                },
-                {
-                    "caption": "附件",
-                    "isGroup": true,
-                    "items": ["AttachmentGrid"]
-                },
-                "ListView1"
+        "AuditOpinion",
+        "BillDate",
+        "NO",
+        "BillerName2",
+        "ApplicantDeptName",
+        "CustomerName",
+        "OU_Name",
+        "ContractBarcode",
+        {
+            "caption": "Contract",
+            "key": "ContractKb"
+        },
+        {
+            "caption": "Production Site",
+            "key": "OD"
+        },
+        "TotalAmountRMB"
     ],
     "tabs": [
         {
@@ -39,36 +27,37 @@
             "isGroup": false,
             "items": [
                 "AuditOpinion",
+                "BillDate",
                 "NO",
-                "Creator",
-                "CreatorDeptName",
-                "ApplicantName",
+                "BillerName2",
                 "ApplicantDeptName",
-                "Position_Descr",
-                "EmployeeType",
-                "StartingDate",
-                "ItemSort",
-                "YearHolidaysSurplus",
-                "SickLeaveSurplus",
-                "AdjustToRest",
-                "Reason",
+                "CustomerName",
+                "OU_Name",
+                "ContractBarcode",
                 {
-                    "caption": "请假时间段",
-                    "isGroup": true,
-                    "items": [
-                        "LeaveDateFrom",
-                        "LeaveDateTo",
-                        "LeaveSumDay"
-                    ]
+                    "caption": "Contract",
+                    "key": "ContractKb"
                 },
-                "ListView1"
+                {
+                    "caption": "Production Site",
+                    "key": "OD"
+                },
+                "TotalAmountRMB"
             ]
         },
         {
             "caption": "附件",
             "isGroup": false,
-            "isGrid": true,
-            "grid":"AttachmentGrid"
+            "items": [
+                "AttachmentGrid",
+                "Grid5"
+            ]
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
         }
     ],
     "controls": {
@@ -77,10 +66,37 @@
             "placeholder": "请输入审批意见",
             "autoHeight": true
         },
-        "Reason": {
-            "control": "TextArea",
-            "placeholder": "请输入请假理由",
-            "autoHeight": true
+        "Grid5": {
+            "control": "TextGrid",
+            "primaryKey": {
+                "type": "element",
+                "elementType": "PathText",
+                "elementProps": {
+                    "textLayouts": {
+                        "fontWeight": "bold",
+                        "fontSize": 16
+                    },
+                    "yigoid": "Path2"
+                }
+            },
+            "addNewRow": "",
+            "empty": "没有附件",
+            "itemNumberOfLines": 2,
+            "actions": [
+                "PreView2"
+            ],
+            "actionButton": {
+                "type": "element",
+                "elementType": "AttachmentAction",
+                "elementProps": {
+                    "tableKey": "Attachment_Detail",
+                    "yigoid": "Grid5"
+                }
+            },
+            "secondKey": [
+                "UploadOperator2",
+                "UploadTime2"
+            ]
         },
         "AttachmentGrid": {
             "control": "TextGrid",
@@ -96,12 +112,11 @@
                 }
             },
             "addNewRow": "",
-            "empty": "没有附件",
             "itemNumberOfLines": 2,
             "actions": [
                 "Preview"
             ],
-            "actionButton":{
+            "actionButton": {
                 "type": "element",
                 "elementType": "AttachmentAction",
                 "elementProps": {

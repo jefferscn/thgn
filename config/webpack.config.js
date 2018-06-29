@@ -74,7 +74,7 @@ export default (DEBUG, PATH, PORT = 3000) => {
                 { test: /\.jpg/, loader: 'url-loader?limit=10000&mimetype=image/jpg' },
                 { test: /\.gif/, loader: 'url-loader?limit=10000&mimetype=image/gif' },
                 { test: /\.png/, loader: 'url-loader?limit=10000&mimetype=image/png' },
-                { test: /\.svg/, loader: 'url-loader?limit=10000&mimetype=image/svg' },
+                { test: /\.svg/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
                 {
                     test: /\.tpl/,
                     loader: 'html-loader',
@@ -90,7 +90,7 @@ export default (DEBUG, PATH, PORT = 3000) => {
                     test: /control\.json/,
                     loader: 'control-loader',
                 },
-                { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
+                { test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
             ],
         },
         plugins: DEBUG
@@ -101,7 +101,7 @@ export default (DEBUG, PATH, PORT = 3000) => {
                 }),
             ]
             : [
-                new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
+                new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"production"', __DEV__: false }),
                 // new webpack.optimize.DedupePlugin(),
                 new webpack.optimize.UglifyJsPlugin({
                     compressor: { screw_ie8: true, keep_fnames: true, warnings: false },

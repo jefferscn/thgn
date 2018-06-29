@@ -17,8 +17,10 @@ import { ControlMappings, Switch } from 'yes-platform';
 import { generateTabRouter, generatePageRouter } from 'yes-router';
 import generateRouteComponent from './util/generateRouteComponent';
 import trinasolarAuthenticatedRoute from './util/AuthenticatedRoute';
-import { Linking } from 'react-native';
+import { Linking, StyleSheet, I18nManager } from 'react-native';
 import { getExtra } from './util/trinasolarApi';
+import { HeaderBackButton } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { sessionKey, serverPath, appName } = projectJSON;
 const { template, tooltip, companyName, bgImagePath, logoImagePath } = loginJSON;
@@ -46,13 +48,32 @@ const appOptions = {
     },
 
 };
+const styles = StyleSheet.create({
+    NavTitle: {
+        color: 'white',
+        justifyContent: 'center',
+        display: 'flex',
+        flex: 1,
+    },
+    BackButton: {
+        height: 24,
+        width: 24,
+        margin: 16,
+        fontSize: 36,
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        resizeMode: 'contain',
+        transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+    },
+});
 
 const TodoTab = createMaterialTopTabNavigator(
     {
         Unfinished: {
             screen: generateRouteComponent({
                 formKey: 'TSL_ToDoList',
-                title: '待办',
+                title: '待我审批的',
                 key: 'TodoList',
                 oid: -1,
                 status: 'DEFAULT',
@@ -61,7 +82,7 @@ const TodoTab = createMaterialTopTabNavigator(
         Focused: {
             screen: generateRouteComponent({
                 formKey: 'OA_FocusWorkflow',
-                title: '关注',
+                title: '我已审批的',
                 key: 'focusworkflow',
                 oid: -1,
                 status: 'DEFAULT',
@@ -70,8 +91,24 @@ const TodoTab = createMaterialTopTabNavigator(
         },
     }, {
         headerMode: 'none',
-        navigationOptions: {
-            title: '我审批的',
+        tabBarOptions: {
+            style: {
+                backgroundColor: 'white',
+            },
+            labelStyle: {
+                height: 30,
+                fontSize: 16,
+                display: 'flex',
+                alignItems: 'center',
+            },
+            indicatorStyle: {
+                backgroundColor: '#008CD7',
+            },
+            activeBackgroundColor: 'white',
+            activeTintColor: '#008CD7',
+            inactiveBackgroundColor: 'white',
+            inactiveTintColor: '#aaa',
+            showLabel: true,
         },
         // onTransitionStart: () => {
         //     AppDispatcher.dispatch({
@@ -91,6 +128,14 @@ const routes = {
         path: 'TodoList',
         navigationOptions: {
             title: '我审批的',
+            headerLeft: (
+                <HeaderBackButton backImage={<Icon style={styles.BackButton} name='angle-left' />} title="返回" />
+            ),
+            headerTitleStyle: styles.NavTitle,
+            headerStyle: {
+                backgroundColor: '#2196f3',
+                color: 'white',
+            },
         },
     },
     DynamicDetail: {

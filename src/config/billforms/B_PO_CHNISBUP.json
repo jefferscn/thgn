@@ -1,38 +1,7 @@
 {
-    "formTemplate": "normal",
+    "formTemplate": "tabs",
     "mergeGridLayout": true,
     "mergeGridLayoutTitle": "基础",
-    "items": [
-                "AuditOpinion",
-                "NO",
-                "Creator",
-                "CreatorDeptName",
-                "ApplicantName",
-                "ApplicantDeptName",
-                "Position_Descr",
-                "EmployeeType",
-                "StartingDate",
-                "ItemSort",
-                "YearHolidaysSurplus",
-                "SickLeaveSurplus",
-                "AdjustToRest",
-                "Reason",
-                {
-                    "caption": "请假时间段",
-                    "isGroup": true,
-                    "items": [
-                        "LeaveDateFrom",
-                        "LeaveDateTo",
-                        "LeaveSumDay"
-                    ]
-                },
-                {
-                    "caption": "附件",
-                    "isGroup": true,
-                    "items": ["AttachmentGrid"]
-                },
-                "ListView1"
-    ],
     "tabs": [
         {
             "caption": "基本",
@@ -44,24 +13,16 @@
                 "CreatorDeptName",
                 "ApplicantName",
                 "ApplicantDeptName",
-                "Position_Descr",
-                "EmployeeType",
-                "StartingDate",
-                "ItemSort",
-                "YearHolidaysSurplus",
-                "SickLeaveSurplus",
-                "AdjustToRest",
-                "Reason",
-                {
-                    "caption": "请假时间段",
-                    "isGroup": true,
-                    "items": [
-                        "LeaveDateFrom",
-                        "LeaveDateTo",
-                        "LeaveSumDay"
-                    ]
-                },
-                "ListView1"
+                "Explain",
+				"CostCenterName",
+				"VCNPT",
+				{
+					"caption": "物料明细",
+					"isGroup": true,
+					"items":[
+						"detail"
+					]
+				}
             ]
         },
         {
@@ -69,6 +30,12 @@
             "isGroup": false,
             "isGrid": true,
             "grid":"AttachmentGrid"
+        },
+        {
+            "caption": "审批历史",
+            "items": [
+                "ListView1"
+            ]
         }
     ],
     "controls": {
@@ -77,11 +44,20 @@
             "placeholder": "请输入审批意见",
             "autoHeight": true
         },
-        "Reason": {
+        "Explain": {
             "control": "TextArea",
-            "placeholder": "请输入请假理由",
+            "placeholder": "请输入理由",
             "autoHeight": true
         },
+		"detail" : {
+			"control":"TextGrid",
+			"primaryKey": "Code",
+			"secondKey": [
+                "CostCenterDesc"
+            ],
+			"empty": "没有数据",
+			"itemNumberOfLines": 2
+		},
         "AttachmentGrid": {
             "control": "TextGrid",
             "primaryKey": {

@@ -6,6 +6,9 @@ import B_FrmContrCN from './B_FrmContrCN.json';
 import B_LeaveApplication from './B_LeaveApplication.json';
 import B_PayApplication from './B_PayApplication.json';
 import OA_TransferTask from './OA_TransferTask.json';
+import B_PO_CHNISBUP from './B_PO_CHNISBUP.json';
+import B_TravelExpenseApply from './B_TravelExpenseApply.json';
+import B_SalContrCN from './B_SalContrCN.json';
 
 export default {
     default: defaultForm,
@@ -16,4 +19,7 @@ export default {
     B_PayApplication,
     OA_TransferTask,
     OA_FocusWorkflow,
+    B_PO_CHNISBUP,
+    B_TravelExpenseApply,
+    B_SalContrCN,
 };
