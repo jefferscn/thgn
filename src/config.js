@@ -128,9 +128,10 @@ const routes = {
         path: 'TodoList',
         navigationOptions: {
             title: '我审批的',
-            headerLeft: (
-                <HeaderBackButton backImage={<Icon style={styles.BackButton} name='angle-left' />} title="返回" />
-            ),
+            // headerLeft: (
+            //     <HeaderBackButton backImage={<Icon style={styles.BackButton} name='angle-left' />} title="返回" />
+            // ),
+            headerBackImage: <Icon style={styles.BackButton} name='angle-left' />,
             headerTitleStyle: styles.NavTitle,
             headerStyle: {
                 backgroundColor: '#2196f3',
